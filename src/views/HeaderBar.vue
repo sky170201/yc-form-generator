@@ -1,6 +1,9 @@
 <template>
     <div class="header">
-        <div class="back">返回</div>
+        <div class="back">
+            <i class="el-icon-arrow-left"></i>
+            返回
+        </div>
         <div class="actions">
             <el-button type="danger" size="small">清除</el-button>
             <el-button size="small">预览</el-button>
@@ -11,21 +14,7 @@
 
 <script>
 export default {
-    name: 'HeaderBar',
-    data () {
-        return {
-
-        }
-    },
-    methods: {
-
-    },
-    computed: {
-
-    },
-    created () {
-
-    }
+    name: 'HeaderBar'
 }
 </script>
 <style lang='scss' scoped>
@@ -39,6 +28,9 @@ export default {
     border: 1px solid #eee;
     box-shadow: 0 0 2px 1px #ddd;
     margin-bottom: 10px;
+    .back {
+        cursor: pointer;
+    }
     .actions {
         display: flex;
         align-items: center;

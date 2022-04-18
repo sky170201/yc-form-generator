@@ -35,3 +35,7 @@ export function deepClone (obj) {
 
     return result
 }
+
+export function isNumberStr (str) {
+    return /^[+-]?(0|([1-9]\d*))(\.\d+)?$/g.test(str)
+}

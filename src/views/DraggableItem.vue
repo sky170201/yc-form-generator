@@ -13,7 +13,7 @@ const components = {
                 <i class="el-icon-copy-document"/>
             </span>,
             <span class="drawing-item-delete" title="删除" onClick={ e => {
-                deleteItem(currentItem, list)
+                deleteItem(index, list)
                 e.stopPropagation()
             }}>
                 <i class="el-icon-delete"/>
@@ -28,7 +28,6 @@ const layouts = {
         const { activeItem } = this.$listeners // 父组件监听的事件
         const config = currentItem.__config__
         const child = renderChildren.apply(this, arguments)
-        console.log(123, this.activeId, config.formId, config)
         // 如果当前表单项活跃的话，添加active样式
         const className = this.activeId === config.formId ? 'drawing-item active-from-item' : 'drawing-item'
         // if (this.formConf.unFocusedComponentBorder) className += ' unfocus-bordered'

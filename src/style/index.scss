@@ -21,40 +21,41 @@ body,
     .el-form-item {
         margin: 0;
     }
-    .drawing-item-copy, .drawing-item-delete {
-        position: absolute;
-        right: 0;
-        top: -15px;
-        padding: 5px;
-        border-radius: 30%;
-        display: none;
+}
+.drawing-item-copy, .drawing-item-delete {
+    position: absolute;
+    right: 0;
+    top: -15px;
+    padding: 5px;
+    border-radius: 30%;
+    display: none;
+    cursor: pointer;
+}
+.drawing-item-copy {
+    right: 35px;
+}
+.el-icon-copy-document {
+    padding: 5px;
+    font-size: 12px;
+    color: #409EFF;
+    border-radius: 50%;
+    border: 1px solid #409EFF;
+    &:hover {
+        background-color: #409EFF;
+        color: #fff;
     }
-    .drawing-item-copy {
-        right: 35px;
+}
+.el-icon-delete {
+    padding: 5px;
+    font-size: 12px;
+    color: #F56C6C;
+    border-radius: 50%;
+    border: 1px solid #F56C6C;
+    &:hover {
+        color: #fff;
+        background-color: #F56C6C;
     }
-    .el-icon-copy-document {
-        padding: 5px;
-        font-size: 12px;
-        color: #409EFF;
-        border-radius: 50%;
-        border: 1px solid #409EFF;
-        &:hover {
-            background-color: #409EFF;
-            color: #fff;
-        }
-    }
-    .el-icon-delete {
-        padding: 5px;
-        font-size: 12px;
-        color: #F56C6C;
-        border-radius: 50%;
-        border: 1px solid #F56C6C;
-        &:hover {
-            color: #fff;
-            background-color: #F56C6C;
-        }
-        
-    }
+    
 }
 
 .active-from-item {
@@ -63,6 +64,40 @@ body,
     .drawing-item-copy, .drawing-item-delete {
         display: block;
     }
+}
+
+.drawing-row-item{
+    position: relative;
+    cursor: move;
+    box-sizing: border-box;
+    border: 1px dashed #ccc;
+    border-radius: 3px;
+    padding: 0 2px;
+    margin-bottom: 15px;
+    .drawing-row-item {
+        margin-bottom: 2px;
+    }
+    .el-col{
+        margin-top: 22px;
+    }
+    .el-form-item{
+        margin-bottom: 0;
+    }
+    .drag-wrapper{
+        min-height: 80px;
+    }
+    &.active-from-item{
+        border: 1px dashed #409EFF;
+    }
+    .component-name{
+        position: absolute;
+        top: 0;
+        left: 0;
+        font-size: 12px;
+        color: #bbb;
+        display: inline-block;
+        padding: 0 6px;
+    }   
 }
 
 // 修改滚动条样式

@@ -3,11 +3,11 @@
         <HeaderBar />
         <div class="content">
             <div class="components-list">
-                <el-tabs v-model="activeName" @tab-click="handleClick">
+                <el-tabs stretch v-model="activeName" @tab-click="handleClick">
                     <el-tab-pane label="物料区" name="first">
-                        <div v-for="(item, listIndex) in leftComponents" :key="listIndex">
+                        <div class="components-container" v-for="(item, listIndex) in leftComponents" :key="listIndex">
                             <div class="components-title">
-                                <!-- <svg-icon icon-class="component" /> -->
+                                <svg-icon icon-class="component" />
                                 {{ item.title }}
                             </div>
                             <draggable
@@ -26,7 +26,7 @@
                                     @click="addComponent(element)"
                                 >
                                     <div class="components-body">
-                                        <!-- <svg-icon :icon-class="element.__config__.tagIcon" /> -->
+                                        <svg-icon :icon-class="element.__config__.tagIcon" />
                                         {{ element.__config__.label }}
                                     </div>
                                 </div>
@@ -35,6 +35,7 @@
                     </el-tab-pane>
                     <el-tab-pane label="常用模板" name="second">
                         常用模板
+                        <div class="components-container"></div>
                     </el-tab-pane>
                 </el-tabs>
             </div>
@@ -63,7 +64,11 @@
                     </el-form>
                 </el-row>
             </div>
-            <PropSetting />
+            <PropSetting
+                :formConf="formConf"
+                :activeData="activeData"
+                :showField="!!drawingList.length"
+            />
         </div>
     </div>
 </template>
@@ -108,7 +113,7 @@ export default {
             formConf,
             drawingList: drawingDefalut,
             activeId: drawingDefalut[0].formId,
-            activeData: {}, // 当前活动的表单项，用于右侧属性设置
+            activeData: drawingDefalut[0], // 当前活动的表单项，用于右侧属性设置
             idGlobal: 100
         }
     },
@@ -121,8 +126,8 @@ export default {
             this.activeFormItem(clone)
         },
         // 删除表单项
-        drawingItemDelete (item, list) {
-            list.splice(item, 1)
+        drawingItemDelete (index, list) {
+            list.splice(index, 1)
             // 删除后如果列表还有值，则将活跃项置为第一项 TODO：优化为置为删除项的后一项(如果有)
             const len = this.drawingList.length
             if (len) {
@@ -182,9 +187,6 @@ export default {
             this.activeId = this.idGlobal
         }
     },
-    computed: {
-
-    },
     mounted () {
         this.activeFormItem(this.drawingList[0])
     }
@@ -204,26 +206,33 @@ export default {
         width: 300px;
         background-color: #fff;
         height: 100%;
-        padding: 0 15px;
+        // padding: 0 15px;
         overflow: auto;
-        .components-title {
-            color: #000;
-            font-size: 16px;
-            margin: 15px 0;
-        }
-        .components-draggable {
-            display: flex;
-            flex-wrap: wrap;
-            .components-item {
-                width: 50%;
-                .components-body {
-                    margin: 5px;
-                    border: 1px solid #DCDFE6;
-                    padding: 5px 10px;
-                    border-radius: 5px;
-                    font-size: 14px;
-                    color: #909399;
-                    cursor: move;
+        .components-container {
+            padding: 0 15px;
+            .components-title {
+                color: #000;
+                font-size: 16px;
+                margin: 15px 0;
+            }
+            .components-draggable {
+                display: flex;
+                flex-wrap: wrap;
+                .components-item {
+                    width: 50%;
+                    .components-body {
+                        margin: 5px;
+                        border: 1px solid #DCDFE6;
+                        padding: 5px 10px;
+                        border-radius: 5px;
+                        font-size: 14px;
+                        color: #909399;
+                        cursor: move;
+                        &:hover {
+                            border: 1px dashed #1fb860;
+                            color: #1fb860;
+                        }
+                    }
                 }
             }
         }
